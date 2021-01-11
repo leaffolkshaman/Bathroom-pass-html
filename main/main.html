@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- This contains the header of all of the other pages, which 'extend' it. Given that this page has no visible elements (only metadata, a title, and includes) you probably don't want to add too much to this. Also note that there is no need for a "DOCTYPE html" or html or head or body tags in other pages, because they all include this one.-->
+<html>
+	<head>
+        <title>Electronic Bathroom+ Pass</title>
+        <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+        {% include "main/includes/navbar.html" %}
+		{% include "main/includes/messages.html" %}
+		{% block content %}
+		{% endblock %}
+	</body>
+</html>

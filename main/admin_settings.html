@@ -1,0 +1,15 @@
+{% extends 'main/main.html' %}
+{% block content %}
+  <nav>
+    <!-- see another admin document for more info about this -->
+    <a href="/admin_request"> Student requests </a>
+    <a href="/admin_log"> Log </a>
+    <span> Settings </span> 
+  </nav>
+  <form action='' method='POST'>
+    {% csrf_token %}
+    <label for='in_hall'> Maximum number of people in hall. If you don't want a maximum, leave blank. </label> 
+    <input type='number' name='in_hall' value='{{ settings.in_hall }}'> 
+    <input type='submit'>
+  </form>
+{% endblock %}

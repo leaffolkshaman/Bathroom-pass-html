@@ -1,0 +1,8 @@
+{% extends 'main/main.html' %}
+{% block content %}
+  <!-- this is a simple page. It tells the user their request has been granted, and gives a button to click when they are back. -->
+  <p> Request granted! </p>
+  <form action="/back">
+    <input type="submit" value="I'm back">
+  </form>
+{% endblock %}

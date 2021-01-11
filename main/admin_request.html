@@ -1,0 +1,35 @@
+{% extends 'main/main.html' %}
+{% block content %}
+  <meta http-equiv="refresh"  content="10"> <!-- refresh this page evern ten seconds -->
+  <nav>
+    <!-- the links at the top. Seperate from the one on top that has login, logout, and register. Probably best to display as tabs. -->
+    <span> Student requests </span>
+    <a href="/admin_log"> Log </a>
+    <a href="/admin_settings"> Settings </a> 
+  </nav>
+  <h1> Student requests </h1>
+  {% for s in status %} <!-- code between here and the endfor will be copied for each student request -->
+    {% if s.when and s.status != ""%} 
+      <p> {{ s.user.first_name }} {{ s.user.last_name }} - {{ s.status }} </p> <!--the name of the student and what they are requesting-->
+      <form action="/change_status" method="get">
+        <!-- the buttons in here allow the teachers to do different actions, such as denying a request, approving it, or 'approve now'ing to so it doesn't have to wait in the queue -->
+        <input type="hidden" name="user" value={{s.user}}> <!-- this line is hidden -->
+        <input type="submit" name="action" value="now">
+        <input type="submit" name="action" value="deny">
+        {% if s.status != "nurse" and s.status != "library" and s.status != "bathroom" %}
+          <input type="submit" name="action" value="allow">
+        {% endif %}
+      </form>
+    {% endif %}
+  {% endfor %}
+  <h1> Students out </h1>
+  {% for s in status %} <!-- code between here and the endfor will be coppied for each student who is currently out of class -->
+    {% if not s.when %}
+      <p> {{ s.user.first_name }} {{ s.user.last_name }} - {{ s.status }} </p> <!-- the name of the student and what they are requesting -->
+      <form action='/change_status' method='get'>
+        <input type='submit' name='action' value='back'> <!-- a button to press if the student is back -->
+        <input type="hidden" name="user" value={{s.user}}> <!-- hidden -->
+      </form>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

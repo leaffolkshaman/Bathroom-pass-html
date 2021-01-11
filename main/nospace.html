@@ -1,0 +1,5 @@
+{% extends 'main/main.html' %}
+{% block content %}<!-- very small page for when the student has to wait because there are too many people in the hall. -->
+  <p>There are already too many people in the hall. Please wait.</p> 
+  <meta http-equiv="refresh" content="10"> <!-- refresh every ten seconds to see if there is room for you now -->
+{% endblock %}

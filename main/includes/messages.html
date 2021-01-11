@@ -1,0 +1,6 @@
+<!-- this document is included by main.html, and is never used on its own. It desplays messages such as errors and notifications that you have been logged in or registered. This onen probably wants more CSS than other webpages. Maybe put it as a popup that goes away after a few seconds, or give it a close button? -->
+{% if messages %} <!-- if there are messages -->
+	{% for message in messages %} <!-- code between here and endfor will be run for each message -->
+		<p {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message | safe}}</p> <!-- this life is a p tag with the message in it. Additionally, it will have a class which will be either "DEBUG, INFO, SUCCESS, WARNING, or ERROR" depending on what type of message it is. If you wanted to, you could color different types of messages different colors. --> <!-- note to self: this line is a security concern -->
+	{% endfor %}
+{% endif %}

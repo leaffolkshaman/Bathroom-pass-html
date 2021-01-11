@@ -1,0 +1,12 @@
+{% extends 'main/main.html' %}
+{% block content %}
+	<form method="POST">
+        <!-- I'm not exactly sure how you would modify this form, given that it is auto-generated. I'll email you as soon as I figure it out. -->
+		{% csrf_token %}
+		{{form.as_p}}
+		<button type="submit">Log in</button>
+	</form>
+	<p>
+		If you don't already have an account, <a href="/register">create one</a> instead.
+	</p>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'main/main.html' %}
+{% block content %}
+	{% if user.is_authenticated %} <!-- code between here and the 'else' will only be used if the user is logged in. -->
+		<p>Welcome, {{user.first_name}} {{user.last_name}}. What would you like to request?</p>
+        <form action="/request"> <!-- these buttons will send a request to go to the bathroom, library, or nurse. -->
+            <input type="submit" value="bathroom" name="action"> 
+            <input type="submit" value="library" name="action">
+            <input type="submit" value="nurse" name="action">
+        </form>
+        <form action="/request">
+            <input type="text" name="action" placeholder="other..."> <!-- the student can enter another request in this textbox if the request they want doesn't have its own button, and then submit it with the button below -->
+            <input type="submit" value="submit">
+        </form>
+	{% else %} <!-- code between here and the endif will only be run if the user isn't logged in. -->
+		<p>
+			Please <a href='/login'>login</a> or <a href='/register'>register</a> to continue.
+		</p>
+	{% endif %}
+{% endblock %}

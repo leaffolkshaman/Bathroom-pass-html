@@ -1,0 +1,37 @@
+{% extends 'main/main.html' %}
+{% block content %}
+  <nav>
+    <!-- these are the links at the top of the page. They are here in addition to the ones that are always there (log in, log out, register, etc). In my oppinion, they would look best as tabs. -->
+    <a href="/admin_request"> Student requests </a>
+    <span> Log </span>
+    <a href="/admin_settings"> Settings </a>
+  </nav>
+  <!-- a form to filter the log.
+  <h2> Filter </h2>
+  <form href="/admin_log">
+    {% csrftoken %}
+    <label for='user'> Student: </label><!-- make it so the is autocomplete here --> 
+    <input name='user' id='user'>
+    <label for='action'> Action: </label>
+    <select name='action' id='action'>
+      <option value="LE">Left</option>
+      <option value="CA">Came back</option>
+      <option value="AR">Arrived</option>
+      <option value="DE">Was denied a request</option>
+    </select>
+    <label for='time'> Time: </label>
+    <input type='datetime-local' id='time' name='time'>
+    <button type='submit'> Search </button>
+  </form>
+  {% for logject in log %} <!-- code between this line and the endfor will be copied for every log item. Only one of the lines will be used, depending on the action in the log. -->
+    {% if logject.action == 'CA' %} <!-- the next line is for if the log is one of someone coming back. -->
+      <p> At {{ logject.time }}, {{ logject.user.first_name }} {{ logject.user.last_name }} came back from the {{ logject.location }} </P>
+    {% elif logject.action == 'LE' %} <!-- the next one is for if they left -->
+      <p> At {{ logject.time }}, {{ logject.user.first_name }} {{ logject.user.last_name }} left to go to  the {{ logject.location }} </P>
+    {% elif logject.action == 'AR' %} <!-- and for if they arrived -->
+      <p> At {{ logject.time }}, {{ logject.user.first_name }} {{ logject.user.last_name }} arrived at the {{ logject.location }} </P>
+    {% elif logject.action == 'DE' %} <!-- and for if they were denied a request -->
+      <p> At {{ logject.time }}, {{ logject.user.first_name }} {{ logject.user.last_name }} was denied a request to go to the {{ logject.location }} </p>
+    {% endif %}
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,11 @@
+<nav>
+	<h1>EBathroom+ pass</h1>
+		{% if user.is_authenticated %}
+			{{ user.first_name }}
+            {{ user.last_name }}
+			<a href="/logout">Log out</a>
+		{% else %}
+			<a href="/login">Log in</a>
+			<a href="/register">Register</a>
+		{% endif %}
+</nav>
